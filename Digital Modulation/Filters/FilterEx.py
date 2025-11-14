@@ -32,7 +32,8 @@ baseband = np.repeat(bits, samples_per_bit)[:N].astype(float)
 # ---------------- Create ASK (OOK) signal ----------------
 carrier = np.cos(2 * np.pi * fc * t)
 ask_signal = baseband * carrier  # OOK: carrier present when bit==1
-
+gg=ask_signal.astype(np.complex64)
+gg.tofile('ask_in_noise.iq')
 # ---------------- Add high-frequency interferer and AWGN ----------------
 interferer = interf_amp * np.cos(2 * np.pi * interf_freq * t)
 # scale noise to get requested SNR relative to ASK signal power
